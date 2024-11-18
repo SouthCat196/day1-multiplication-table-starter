@@ -9,13 +9,21 @@ public class MultiplicationTableBuilder {
         MultiplicationTableBuilder builder = new MultiplicationTableBuilder();
         int start = 2;
         int end = 4;
-        boolean startIsLessThanEnd = builder.startIsLessThanEnd(start, end);
+        boolean inputLegal = builder.checkInputLegal(start, end);
 
-        System.out.println("startIsLessThanEnd: " + startIsLessThanEnd);
+        System.out.println("checkInputLegal: " + inputLegal);
     }
 
     public String generateMultiplicationTable(int start, int end) {
         return "";
+    }
+
+    private boolean checkInputLegal(int startNumber, int endNumber) {
+        if (checkNumberInRange(startNumber) && checkNumberInRange(endNumber)
+                && startIsLessThanEnd(startNumber, endNumber)) {
+            return true;
+        }
+        return false;
     }
 
     private boolean checkNumberInRange(int number) {

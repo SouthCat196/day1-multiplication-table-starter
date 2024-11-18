@@ -9,9 +9,9 @@ public class MultiplicationTableBuilder {
         MultiplicationTableBuilder builder = new MultiplicationTableBuilder();
         int start = 2;
         int end = 4;
-        boolean numberInRange = builder.checkNumberInRange(start);
+        boolean startIsLessThanEnd = builder.startIsLessThanEnd(start, end);
 
-        System.out.println("numberInRange: " + numberInRange);
+        System.out.println("startIsLessThanEnd: " + startIsLessThanEnd);
     }
 
     public String generateMultiplicationTable(int start, int end) {
@@ -20,5 +20,9 @@ public class MultiplicationTableBuilder {
 
     private boolean checkNumberInRange(int number) {
         return number >= MIN_NUMBER && number <= MAX_NUMBER ? true : false;
+    }
+
+    private boolean startIsLessThanEnd(int startNumber, int endNumber) {
+        return startNumber <= endNumber;
     }
 }

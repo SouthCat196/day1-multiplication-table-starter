@@ -12,13 +12,23 @@ public class MultiplicationTableBuilder {
         MultiplicationTableBuilder builder = new MultiplicationTableBuilder();
         int start = 2;
         int end = 4;
-        String tableRow = builder.generateTableRow(4, 2);
+        String multiplicationTable = builder.generateMultiplicationTable(start, end);
 
-        System.out.println("tableRow: " + tableRow);
+        System.out.println("MultiplicationTable: ");
+        System.out.println(multiplicationTable);
     }
 
     public String generateMultiplicationTable(int start, int end) {
-        return "";
+        if (!checkInputLegal(start, end)) {
+            return null;
+        }
+        StringBuilder stringBuilder = new StringBuilder();
+        IntStream.rangeClosed(start, end)
+                .forEach(lineNumber -> {
+                    stringBuilder.append(generateTableRow(lineNumber, start)).append(System.lineSeparator());
+                });
+
+        return stringBuilder.toString();
     }
 
     private String generateTableRow(int lineNumber, int start) {

@@ -1,5 +1,8 @@
 package com.tw;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 public class MultiplicationTableBuilder {
 
     private static final int MIN_NUMBER = 1;
@@ -9,13 +12,19 @@ public class MultiplicationTableBuilder {
         MultiplicationTableBuilder builder = new MultiplicationTableBuilder();
         int start = 2;
         int end = 4;
-        boolean inputLegal = builder.checkInputLegal(start, end);
+        String tableRow = builder.generateTableRow(4, 2);
 
-        System.out.println("checkInputLegal: " + inputLegal);
+        System.out.println("tableRow: " + tableRow);
     }
 
     public String generateMultiplicationTable(int start, int end) {
         return "";
+    }
+
+    private String generateTableRow(int lineNumber, int start) {
+        return IntStream.rangeClosed(start, lineNumber)
+                .mapToObj(item -> String.format("%d*%d=%d", item, lineNumber, item * lineNumber))
+                .collect(Collectors.joining(" "));
     }
 
     private boolean checkInputLegal(int startNumber, int endNumber) {

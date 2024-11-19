@@ -31,22 +31,19 @@ public class MultiplicationTableBuilder {
         return stringBuilder.toString();
     }
 
-    private String generateTableRow(int lineNumber, int start) {
+    private String generateTableRow(int start, int lineNumber) {
         return IntStream.rangeClosed(start, lineNumber)
                 .mapToObj(item -> String.format("%d*%d=%d", item, lineNumber, item * lineNumber))
                 .collect(Collectors.joining(" "));
     }
 
     private boolean checkInputLegal(int startNumber, int endNumber) {
-        if (checkNumberInRange(startNumber) && checkNumberInRange(endNumber)
-                && startIsLessThanEnd(startNumber, endNumber)) {
-            return true;
-        }
-        return false;
+        return checkNumberInRange(startNumber) && checkNumberInRange(endNumber)
+                && startIsLessThanEnd(startNumber, endNumber);
     }
 
     private boolean checkNumberInRange(int number) {
-        return number >= MIN_NUMBER && number <= MAX_NUMBER ? true : false;
+        return number >= MIN_NUMBER && number <= MAX_NUMBER;
     }
 
     private boolean startIsLessThanEnd(int startNumber, int endNumber) {
